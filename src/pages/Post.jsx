@@ -10,7 +10,7 @@ export default function Post() {
     const { slug } = useParams();
     const navigate = useNavigate();
 
-    const userData = useSelector((state) => state.userData);
+    const userData = useSelector((state) => state.user.userData);
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
@@ -33,34 +33,35 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8">
+        <div className="py-8 bg-gray-100">
             <Container>
-                <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
-                    <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
-                        alt={post.title}
-                        className="rounded-xl"
-                    />
-
-                    {isAuthor && (
-                        <div className="absolute right-6 top-6">
-                            <Link to={`/edit-post/${post.$id}`}>
-                                <Button bgColor="bg-green-500" className="mr-3">
-                                    Edit
-                                </Button>
-                            </Link>
-                            <Button bgColor="bg-red-500" onClick={deletePost}>
-                                Delete
-                            </Button>
-                        </div>
-                    )}
-                </div>
-                <div className="w-full mb-6">
-                    <h1 className="text-2xl font-bold">{post.title}</h1>
-                </div>
-                <div className="browser-css">
-                    {parse(post.content)}
+                <div className="max-w-3xl mx-auto bg-white rounded-xl overflow-hidden shadow-lg">
+                    <div className="relative h-80 md:h-96 overflow-hidden rounded-t-xl">
+                        <img
+                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            alt={post.title}
+                            className="object-cover w-full h-full"
+                        />
                     </div>
+                    <div className="p-6">
+                        <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{post.title}</h1>
+                        <div className="prose max-w-none">
+                            {parse(post.content)}
+                        </div>
+                        {isAuthor && (
+                            <div className="mt-6 flex justify-end">
+                                <Link to={`/edit-post/${post.$id}`}>
+                                    <Button bgColor="bg-green-500" className="mr-3">
+                                        Edit
+                                    </Button>
+                                </Link>
+                                <Button bgColor="bg-red-500" onClick={deletePost}>
+                                    Delete
+                                </Button>
+                            </div>
+                        )}
+                    </div>
+                </div>
             </Container>
         </div>
     ) : null;

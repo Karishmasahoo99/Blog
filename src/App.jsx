@@ -1,5 +1,4 @@
 import conf from './conf/conf';
-import './App.css'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login,logout } from './store/authSlice';
@@ -30,9 +29,8 @@ function App() {
          <div className='w-full block'>
           <Header/>
           <main>
-            TODO: <Outlet/>
+            <Outlet/>
           </main>
-          <Footer/>
          </div>
     </div>
   ):

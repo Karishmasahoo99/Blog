@@ -12,6 +12,7 @@ import PostCard from "./PostCard";
 import Select from "./Select";
 import RTE from "./RTE";
 import Signup from "./Signup";
+import Loader from "./Loader";
 
 export {
     Header,
@@ -23,9 +24,10 @@ export {
     Input,
     PostCard,
     Select,
+    Loader,
     RTE,
     PostForm,
     Protected,
     Login,
     Signup
-}
+};

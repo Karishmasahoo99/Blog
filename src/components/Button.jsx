@@ -2,7 +2,7 @@ import React from 'react'
 
 function Button({children,
     type='button',
-    bgColor='bg-blue-600',
+    bgColor='bg-black',
     textColor='text-white',
     className='',
     ...props
